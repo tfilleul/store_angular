@@ -1,0 +1,1 @@
+[{"canPurchase":false,"description":"A good test product","name":"Dodecahedron","price":"2.95","reviews":[{"author":"test","body":"test1","stars":1},{"author":"test","body":"test2","stars":2}]},{"canPurchase":false,"description":"A good product","name":"Name2","price":"2.45","reviews":[{"author":"test","body":"test1","stars":1},{"author":"test","body":"test2","stars":2}]}]

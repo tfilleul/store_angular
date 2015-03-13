@@ -1,0 +1,23 @@
+.ng-invalid.ng-dirty {
+border-color: #FA787E;
+}
+!
+.ng-valid.ng-dirty {
+border-color: #78FA89;
+}
+
+.ng-table {
+    border: 1px solid #000;
+}
+
+.user-form input[type=text] {
+width: 34%;
+}
+
+.user-form input[type=email] {
+width: 34%;
+}
+
+.user-form input[type=password] {
+width: 34%;
+}

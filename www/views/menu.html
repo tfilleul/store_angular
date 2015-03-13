@@ -1,0 +1,32 @@
+<nav role="navigation" class="navbar navbar-fixed-top"  ng-controller="NavigationCtrl">
+      <div class="container">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <span class="sr-only">Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#/panel" class="navbar-brand"><img src="images/if.png" alt="ANSES"></a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav">
+          	<li><a href="#/search/">Rechercher</a></li>            
+          </ul>
+          <ul ng-controller="AuthCtrl" id="barreConnexion" class="nav navbar-nav navbar-right">
+            <li ng-show="loggedout"><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#loginModal">
+			  Connexion
+			</button></li>
+			<li ng-show="loggedin" class="dropdown">
+			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.fullName}}<span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#/logout">Déconnexion</a></li>
+              </ul>
+			</li>
+			
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	
+

@@ -1,0 +1,51 @@
+<div ng-switch on="isMajUser()" ng-controller="UserController"> 
+     <span ng-switch-when="true"><label style="margin-left: 60px;font-size: 20px;color: #0099FF;">Mise à jour utilisateur</label></span>
+     <span ng-switch-default><label style="margin-left: 15px;font-size: 20px;color: #0099FF;">Creation utilisateur</label></span>
+
+	<form name="userForm" class="form-horizontal user-form"  ng-submit="actionUser()" novalidate>
+	
+	  <div class="form-group">
+	    <label for="name" class="col-sm-4 control-label">Name</label>
+	    <div class="col-sm-8">
+	      <input type="text" ng-model="user.name" class="form-control" id="inputName" placeholder="Name" required="required">
+	    </div>
+	  </div>	
+	  <div class="form-group">
+	    <label for="name" class="col-sm-4 control-label">Firstname</label>
+	    <div class="col-sm-8">
+	      <input type="text" ng-model="user.firstname" class="form-control" id="inputName" placeholder="Prenom" required="required">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
+	    <div class="col-sm-8">
+	      <input type="password" ng-model="user.password" class="form-control" id="inputPassword3" placeholder="Password" required="required">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="inputEmail3" class="col-sm-4 control-label">Adresse mail</label>
+	    <div class="col-sm-8">
+	      <input type="email" ng-model="user.mail" class="form-control" id="inputEmail3" placeholder="Email" required="required">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="inputPassword3" class="col-sm-4 control-label">Profil</label>
+	    <div class="col-sm-8">
+	    	<select id="inputProfil" class="form-control" ng-model="user.profil" ng-init="user.profil = profilList[0]" ng-options="profil.label for profil in profilList track by profil.id">
+			</select>	      
+	    </div>
+	  </div>  
+	  <div class="form-group">
+	    <div class="col-sm-offset-4 col-sm-8">
+	      	<a class="btn btn-default" href="#/panel">Annuler</a>
+	      	<span ng-switch on="isMajUser()" ng-controller="UserController">
+     		<span ng-switch-when="true"><input type="submit" value="Mettre à jour" id="putUser" name="putUser" class="btn btn-primary"/></span>
+     		<span ng-switch-default><input type="submit" value="Enregistrer" id="addUser" name="addUser" class="btn btn-primary"/></span>
+     		</span>	      	
+	    </div>
+	  </div>
+	  
+	</form>  
+
+</div>		
+ 		
