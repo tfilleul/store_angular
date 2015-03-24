@@ -54,7 +54,8 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 	 $scope.go = function ( hash ) {
 		  $location.path( hash );
 	 };
-		 
+	 
+	 /* Ajout user */
 	 addUser = function(user) {
 		 cpuser = angular.copy(user);
 		 usersService.addUser(cpuser)
@@ -76,28 +77,23 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 		 resetForm();
 	  };
 	  
+	  /* Mettre a jour User */
 	  putUser = function(user) {			 
 			 usersService.putUser(user)
 				.success(
 					function(response) 
 						{
-							$log.debug('Retour succes de searchFirstThesaurus');			
-							$scope.message = {text: "Utilisateur mis a jour"};
+							$log.debug('Retour succes de searchFirstThesaurus');
+							$scope.addMessage("Utilisateur mis a jour");							
 							$scope.go("/panel");
 						})
 				.error( 
-					function(response) 
+					function(response,status) 
 						{
-							$scope.addAlert({ type: 'danger', msg: "Impossible d'ajouter l utilisateur "});
+							$scope.addAlert({ type: 'danger', msg: "Impossible d'ajouter l utilisateur "},status);							
 							$scope.message = {text: "Impossible de mettre a jour l utilisateur "};
 						});
-		  };
-	  
-	  function resetForm() {
-		  $scope.user.name = '';
-		  $scope.user.mail = '';
-		  $scope.user.password = '';
-	  }
+	  };
 	  
 	  $scope.actionUser = function() {		
 		  $log.info("user"+$scope.user.name);		  
@@ -113,6 +109,12 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 		getUser(id);
 	  } else {
 		getListUser();
+	  }
+	  
+	  function resetForm() {
+		  $scope.user.name = '';
+		  $scope.user.mail = '';
+		  $scope.user.password = '';
 	  }
 	
 }]);

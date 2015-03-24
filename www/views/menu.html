@@ -18,9 +18,9 @@
 			  Connexion
 			</button></li>
 			<li ng-show="loggedin" class="dropdown">
-			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.fullName}}<span class="caret"></span></a>
+			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.login}}<span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a href="#/logout">Déconnexion</a></li>
+                <li><a ng-href="#/logout" ng-click="logout()">DÃ©connexion</a></li>
               </ul>
 			</li>
 			

@@ -41,6 +41,7 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 							  $rootScope.loggedin = true;
 							  $rootScope.loggedout = false;
 							  $scope.credentials = {};
+							  $scope.addMessage("Vous êtes bien connecté !!");
 //					          $location.path($rootScope.pathAtferLogin);
 							  $location.path('/panel')
 					          $('#loginModal').modal('hide');
@@ -53,7 +54,7 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 	  };
 	  
 	  $scope.logout = function () {
-		  authService.logout($scope.credentials)
+		  authService.logout()
 			  .success(
 						function(response) 
 							{

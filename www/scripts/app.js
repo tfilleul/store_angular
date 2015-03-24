@@ -75,6 +75,10 @@ angular
 	    templateUrl: 'views/searchForm.html',
 	    publicAccess: true
 	  })
+	   .when('/logout', { 
+    	templateUrl: 'views/searchForm.html', 
+    	controller: 'AuthCtrl' 
+      })
 	   .when('/panel', {
 	    title: "Mise a jour utilisateur",
 	    templateUrl: 'views/panels.html',
@@ -95,7 +99,8 @@ angular
 	        		var url = config.url;
 	      
 	        		if (status == 401) {
-	        			$location.path( "/search" );
+	        			$location.path( "/search" );	        			
+	        			$rootScope.$broadcast('event:notAllowedAccess', status);
 	        		} else {
 	        			$rootScope.error = method + " on " + url + " failed with status " + status;
 	        		}

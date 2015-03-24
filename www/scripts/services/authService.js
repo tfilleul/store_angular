@@ -1,12 +1,12 @@
 angular.module('store').service('authService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
-      this.login = function (credentials) {
-    	  $log.debug("Checking login/password : " + credentials.login + "/ <hidden pass>");
-          return $http.put(CONSTANTES.APPLICATION_URL + '/store_services/mvc/authUser', credentials);
+      this.login = function (authentification) {
+    	  $log.debug("Checking login/password : " + authentification.login + "/ <hidden pass>");
+          return $http.put(CONSTANTES.APPLICATION_URL + '/store/mvc/logon', authentification);
       };
       
-      this.logout = function (credentials) {
-    	  $log.debug("Logout login : " + credentials.login);
-          return $http.put(CONSTANTES.APPLICATION_URL + '/store_services/mvc/logout', credentials);
+      this.logout = function () {
+    	  $log.debug("Logout ");
+          return $http.get(CONSTANTES.APPLICATION_URL + '/store/mvc/logoff');
       };
 }]);
 

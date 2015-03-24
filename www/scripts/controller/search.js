@@ -4,6 +4,7 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
                                    function($scope,$rootScope,$http,usersService,$log,$location,$route){
 
 	$scope.list = [];
+
 //	$scope.criteria = { name:"",firstname:"",age:""};
 	
 	getListUser = function() {
@@ -20,8 +21,7 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
 		.error( 
 			function(response) 
 				{
-					$scope.addAlert({ type: 'danger', msg: "Impossible de proceder à la recherche "});
-					$scope.message = {text: "Impossible d'initialiser la liste des thesaurus "};
+					$scope.addAlert({ type: 'danger', msg: "Impossible de proceder à la recherche "});					
 				});
 	};
 	

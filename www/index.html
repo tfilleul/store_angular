@@ -79,7 +79,7 @@
 		 <div class="content" ng-controller="MainCtrl">
 		  	 <div class="alerts" ng-cloak>
 			  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert(alert)">{{alert.msg}}</alert>
-			 </div>	
+			 </div>			
 	      	 <div ng-view=""></div>	
 	      	 <div class="loginModal" ng-include="'views/loginModal.html'"></div>      	
 	  	 </div>	  
