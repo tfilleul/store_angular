@@ -1,0 +1,11 @@
+<div ng-controller="AuthCtrl">
+  <h1>Bienvenue sur l'application RFA</h1>
+  <p>Veuillez saisir les login et mot de passe de l'AD</p>
+  <form>
+      <input type="texte"  placeholder="Login" name="login" ng-model="credentials.login" required/>
+      <input type="texte" placeholder="Mot de passe" name="password" ng-model="credentials.password" required/>
+      <button type="submit" ng-click="login()">Log in</button>
+  </form>
+  {{credentials}}
+</div>
+

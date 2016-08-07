@@ -1,0 +1,28 @@
+<div class="pull-right">
+<a class="btn btn-info" href="#user/add">Ajout d un utilisateur</a>
+</div>
+<div ng-controller="UserController">
+<table class="table table-striped" at-table at-paginated at-list="list" at-config="config">
+  <thead>
+   <tr> 
+   		<th at-attribute="id">Identifiant</th> 
+   		<th at-attribute="name">Nickname</th> </tr>
+   		<th at-attribute="mail">Adresse mail</th> </tr>
+  </thead>
+  <tbody>    
+     <tr style="cursor:pointer" ng-click="go('/user/put/'+item.id)">        
+      <td at-title="Name">
+        {{item.name}}
+      </td>
+      <td at-title="Adresse mail">
+        {{item.mail}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<at-pagination at-list="list" at-config="config"></at-pagination>
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+
+			  		
+</div> 		
