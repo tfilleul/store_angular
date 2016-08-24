@@ -76,6 +76,11 @@ angular
 	    templateUrl: 'views/searchForm.html',
 	    publicAccess: true
 	  })
+	   .when('/loginModal', {
+	    title: "Connexion",
+	   // templateUrl: 'views/searchForm.html',
+	    publicAccess: true
+	  })
 	   .when('/logout', { 
     	templateUrl: 'views/searchForm.html', 
     	controller: 'AuthCtrl' 
@@ -83,7 +88,7 @@ angular
 	   .when('/panel', {
 	    title: "Mise a jour utilisateur",
 	    templateUrl: 'views/panels.html',
-	    publicAccess: false
+	    publicAccess: true
 	  })
 	  .otherwise({
 	    redirectTo: '/'
@@ -137,8 +142,7 @@ angular
 );
    
 }]
-).run(function($rootScope, $location, $cookieStore,$route) {
-	
+).run(function($rootScope, $location, $cookieStore,$route) {	
 	
 	var routesOpenToPublic = [];
     angular.forEach($route.routes, function(route, path) {
@@ -146,31 +150,31 @@ angular
         route.publicAccess && (routesOpenToPublic.push(path));
     });
 
-//    $rootScope.$on('$routeChangeStart', function(event, nextLoc, currentLoc) {
-//        var closedToPublic = (-1 === routesOpenToPublic.indexOf($location.path()));
-//        if(closedToPublic && !$rootScope.loggedin) {
-//            $location.path('/search');
-//        }
-//    });	
+    $rootScope.$on('$routeChangeStart', function(event, nextLoc, currentLoc) {
+        var closedToPublic = (-1 === routesOpenToPublic.indexOf($location.path()));
+        if(closedToPublic && !$rootScope.loggedin) {
+            $location.path('/search');
+        }
+    });	
 
-/* Reset error when a new view is loaded */
-$rootScope.$on('$viewContentLoaded', function() {
-	delete $rootScope.error;
-});
+	/* Reset error when a new view is loaded */
+	$rootScope.$on('$viewContentLoaded', function() {
+		delete $rootScope.alerts;
+	});
 
-$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-      $rootScope.title = current.$$route.title;
-  });
+	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+	      //$rootScope.title = current.$$route.title;
+	  });
 
-$rootScope.CONSTANTES = CONSTANTES;
+	$rootScope.CONSTANTES = CONSTANTES;
 
-$rootScope.logout = function() {
-	delete $rootScope.user;
-	delete $rootScope.authToken;
-	$location.path("/search");
-};
+	$rootScope.logout = function() {
+		delete $rootScope.user;
+		delete $rootScope.authToken;
+		$location.path("/search");
+	};
 
-$rootScope.initialized = true;
+	$rootScope.initialized = true;
 })
 .value('cgBusyDefaults',{
   message:'Recherche en cours...',

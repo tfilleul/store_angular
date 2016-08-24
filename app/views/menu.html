@@ -1,32 +1,31 @@
-<nav role="navigation" class="navbar navbar-fixed-top"  ng-controller="NavigationCtrl">
-      <div class="container">
-        <div class="navbar-header">
-          <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-            <span class="sr-only">Navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="#/panel" class="navbar-brand"><img src="images/if.png" alt="ANSES"></a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar">
-          <ul class="nav navbar-nav">
-          	<li><a href="#/search/">Rechercher</a></li>            
-          </ul>
-          <ul ng-controller="AuthCtrl" id="barreConnexion" class="nav navbar-nav navbar-right">
-            <li ng-show="loggedout"><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#loginModal">
-			  Connexion
-			</button></li>
-			<li ng-show="loggedin" class="dropdown">
+<nav class="navbar navbar-inverse" ng-controller="AuthCtrl">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#/products">Products</a></li>
+        <li ng-show="loggedin"><a href="#/panel">Users</a></li>
+        <li><a href="#/search">Search</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="loggedout"><a data-toggle="modal" href ng-click="openModal()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li ng-show="loggedin" class="dropdown">
 			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.login}}<span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
                 <li><a ng-href="#/logout" ng-click="logout()">Déconnexion</a></li>
               </ul>
-			</li>
-			
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-	
-
+		</li>
+		<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -8,6 +8,9 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 		
 	var id = $route.current.params.id;
 	
+	$scope.format = 'dd/MM/yyyy';
+	$scope.date = new Date();
+	
 	$scope.getUser = function(id) {
 		
 		$q.all([refService.getRef(0),usersService.getUsers(id)])		
@@ -19,8 +22,7 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 				}			
 		,function(error) 
 				{
-					$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser l utilisateur "});
-					$scope.message = {text: "Impossible d'initialiser la liste des thesaurus "};
+				$rootScope.addAlert({ type: 'danger', msg: "Impossible d'initialiser l utilisateur "});					
 				});
 	};
 	
@@ -35,8 +37,7 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 				}			
 		,function(error) 
 				{
-					$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser les users "});
-				//	$scope.message = {text: "Impossible d'initialiser la liste des thesaurus "};
+					$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser les users "});				
 				});
 	};
 	
@@ -76,7 +77,8 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 					});	
 					 
 		 $scope.userForm.$setPristine();
-		 resetForm();
+		 $user = {};
+		 //resetForm();
 	  };
 	  
 	  /* Mettre a jour User */
@@ -115,6 +117,7 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 	  
 	  function resetForm() {
 		  $scope.user.name = '';
+		  $scope.user.firstname = '';
 		  $scope.user.mail = '';
 		  $scope.user.password = '';
 	  }

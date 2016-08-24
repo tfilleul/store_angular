@@ -65,8 +65,10 @@ html, body {
 }
 
 .store-form button {	
-	margin-right: 55px;
-	margin-top: 22px;
+	/* margin-right: 55px; */
+	/* margin-top: 22px; */
+	margin : 10px;
+	padding-right:8px;
 }
 
 div.float {
@@ -76,4 +78,25 @@ div.float {
 div.float p {
  	text-align: center;
   }
+  
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }  
+  
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
 
+/*
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+*/

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('store').service('usersService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
 	$log.debug("Call service users");
       

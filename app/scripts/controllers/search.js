@@ -16,7 +16,7 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
 					$scope.list = response;
-					if ($scope.list.size == 0) {
+					if ($scope.list.size === 0) {
 						
 					}
 				})
@@ -38,6 +38,6 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
 	  
 	  $scope.searchUser = function() {	
 		  $scope.getListUser();		  
-	  } 	  
+	  }; 	  
 	 
 }]);

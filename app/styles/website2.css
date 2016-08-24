@@ -1,0 +1,71 @@
+/* Remove the navbar's default rounded borders and increase the bottom margin */
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+/* Remove the jumbotron's default bottom margin */
+.jumbotron {
+	margin-bottom: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px} 
+
+/* Set gray background color and 100% height */
+.sidenav {
+	padding-top: 20px;
+	background-color: #f1f1f1;
+	height: 100%;
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+	background-color: #f2f2f2;
+	padding: 25px;
+	/*   position: absolute; bottom: 0;
+      width:100%;
+ */
+}
+
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+	.sidenav {
+		height: auto;
+		padding: 15px;
+	}
+	.row.content {
+		height: auto;
+	}
+}
+
+/*
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+*/
+
+.user-form select {
+	width: 40%;
+}
+
+.user-form input[type=text] {
+	width: 40%;
+}
+
+.user-form input[type=email] {
+	width: 40%;
+}
+
+.user-form input[type=password] {
+	width: 40%;
+}
+
+.button {
+	display:block;
+	text-align:center;
+}

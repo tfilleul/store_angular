@@ -3,35 +3,30 @@
  <!--  <div id="titre" style="margin-left: 15px;margin-bottom: 15px;;font-size: 20px;color: #0099FF;">	
   	<span >Ecran de Recherche</span>
   </div> -->
-  
-  <div class="row">
-  		<form name="search" class="form-horizontal user-form store-form">
-        <div class="col-sm-4">  
-        	<div style="text-align:center">      	
-	         	<label for="name" class="control-label">Nom</label>        
-	         	<input type="text" ng-model="criteria.name" class="form-control" id="inputName" placeholder="Nom" >
-         	</div>
-        </div>
-        <div class="col-sm-4">
-        	<div style="text-align:center">        
-         		<label for="name" class="control-label">Prenom</label>         
-         		<input type="text" ng-model="criteria.firstName" class="form-control" id="inputName" placeholder="prenom" >
-         	</div>
-        </div>
-        <div class="col-sm-4"> 
-        	<div style="text-align:center">         
-         		<label for="name" class="control-label">Age</label>        
-         		<input type="text" ng-model="criteria.age" class="form-control" id="inputName" placeholder="age" >
-         	</div>
-         </div>
-         	<div style="float:right">  
-          		<button type="submit" class="btn btn-primary" ng-click="searchUser()">Recherche</button>
-             </div>   
-      </form> 
-   </div>
-   
-   <div class="row">
-    <div class="col-md-10 col-md-offset-1" ng-repeat="user in list">
+
+<div class="row" style="padding:25px">
+		<form name="search" class="form-inline">  		
+	      	<div class="form-group col-sm-3">      	
+	        	<label for="name" class="control-label">Nom</label>        
+	        	<input type="text" ng-model="criteria.name" class="form-control" id="inputName" placeholder="Nom" >
+	       	</div>
+	
+	      	<div class="form-group col-sm-3" >        
+	       		<label for="name" class="control-label">Prenom</label>         
+	       		<input type="text" ng-model="criteria.firstName" class="form-control" id="inputName" placeholder="prenom" >
+	       	</div>
+	      	<div class="form-group col-sm-3" >         
+	       		<label for="name" class="control-label">Age</label>        
+	       		<input type="text" ng-model="criteria.age" class="form-control" id="inputName" placeholder="age" >
+	       	</div>
+	       	<div class="col-sm-3" style="text-align: center">
+	     	<button type="submit" class="btn btn-default" ng-click="searchUser()">Recherche</button>
+	     	</div>
+      </form>
+ </div>
+ 
+  <div class="row" ng-repeat="user in list" style="border:green solid">
+    <div class="col-sm-5 col-md-offset-1" >
     	<div style="background-color: white;border-color: black;border:O.5px solid black;">
   			<p style="text-align: left;
 padding: 5px 5px 5px 114px;">Name : {{user.name}}</p>
@@ -41,8 +36,15 @@ padding: 5px 5px 5px 114px;">Prenom : {{user.firstname}}</p>
 padding: 5px 5px 5px 114px;">Age : {{user.age}}</p>
   		</div>
   	</div>
+  	<div class="col-sm-4 col-md-offset-1" >
+    	<div style="background-color: white;border-color: black;border:O.5px solid black;">
+  			<img src="images/yeoman.png"/>
+  		</div>
+  		<div class="col-sm-1" >
+  		</div>
+  	</div>
   </div>
-	
+  	
   
 </div>
 

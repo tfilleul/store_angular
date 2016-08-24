@@ -4,7 +4,7 @@
   "dependencies": {
     "angular": "^1.4.0",
     "at-table": "^1.0.4",
-    "bootstrap": "3.3.4",
+    "bootstrap": "3.3.7",
     "angular-animate": "^1.4.0",
     "angular-cookies": "^1.4.0",
     "angular-resource": "^1.4.0",
@@ -15,7 +15,8 @@
     "angular-paginate-anything": "3.1.0",
     "angular-dropdowns": "^1.5.1",
     "angucomplete-alt": "^2.4.1",
-    "angular-bootstrap": "^2.0.1"
+    "angular-bootstrap": "^2.0.1",
+    "components-font-awesome": "^4.6.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

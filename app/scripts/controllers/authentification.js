@@ -13,7 +13,12 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 	  $log.debug("Loading AuthCtrl");
 	   
 	  $scope.showLoginErrorUserPass = false;
-
+	  
+	  $scope.openModal = function() {
+		  $rootScope.pathAtferLogin = $location.$$url;
+          $('#loginModal').modal('show');
+	  };
+	 
 	  if ($rootScope.authentification === undefined) {
 		  $rootScope.loggedin = false;
 		  $rootScope.loggedout = true;
@@ -37,13 +42,14 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 					function(response) 
 						{
 							  $log.debug("Setting root scope");
+							  // on stoke le token dans l'objet authentification
 							  $rootScope.authentification = response;
 							  $rootScope.loggedin = true;
 							  $rootScope.loggedout = false;
 							  $scope.credentials = {};
 							  $scope.addMessage("Vous êtes bien connecté !!");
-//					          $location.path($rootScope.pathAtferLogin);
-							  $location.path('/panel');
+					          $location.path($rootScope.pathAtferLogin);
+							//  $location.path('/panel');
 					          $('#loginModal').modal('hide');
 						})
 			.error( 

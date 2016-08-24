@@ -2,23 +2,10 @@
 <html>
  <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
-	<!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
-    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
-    <link rel="stylesheet" href="bower_components/angular-dropdowns/dist/angular-dropdowns.min.css" />
-    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-  
-  	 <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/website.css">
-    <!-- endbuild -->
-    </head>
-    
+ 	<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+<!--     <link rel="stylesheet" type="text/css" href="styles/store.css" /> -->
+ 		 <link rel="stylesheet" type="text/css" href="styles/website.css" />
+ </head>
  <body ng-app="store">
  	<!--  
  	<script type="text/javascript" src="./scripts/lib/angular.min.js"></script>
@@ -44,7 +31,6 @@
     <!-- endbower -->
     <!-- endbuild -->
     
-     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/constantes.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>	
 	<!-- controllers  -->
@@ -57,37 +43,34 @@
 	<script type="text/javascript" src="scripts/controllers/navigation.js"></script>
 	<script type="text/javascript" src="scripts/controllers/authentification.js"></script>
 	<script type="text/javascript" src="scripts/controllers/datePicker.js"></script>
-			
+		
+		
 	<script src="scripts/services/authService.js"></script>
 	<script src="scripts/services/usersService.js"></script>
 	<script src="scripts/services/refService.js"></script>
 	
 	<!--  directive -->
 	<script type="text/javascript" src="scripts/directive/product.js"></script>	
-	<!-- endbuild -->	
+		
 	
 	<!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-         	
-<div class="wrap">
- <div class="header" ng-include="'views/menu.html'"></div>	    	
- <div class="container-fluid text-center" ng-controller="MainCtrl"> 
- <div class="loginModal" ng-include="'views/loginModal.html'"></div>      	
-    <div class="row content">
-    <div class="col-sm-2 sidenav">    
-    </div>
-    <div class="col-sm-8">
-    	<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
-        <div ng-view=""></div>
-    </div>
-    <div class="col-sm-2 sidenav">      
-    </div>
-  </div>
-</div>
-<div ng-include="'views/footer.html'"></div>  
-</div>
+    
+     <div class="wrap">     
+	     <div class="header" ng-include="'views/menu2.html'"></div>	          
+		 <div class="content" ng-controller="MainCtrl">
+		 	 <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+	      	 <div ng-view=""></div>	
+	      	 <div class="loginModal" ng-include="'views/loginModal.html'"></div>      	
+	  	 </div>	
+	   
+     <div ng-cloak class="footer">
+			<div ng-controller="MainCtrl">
+				<p align="center" class="text-muted">Version {{CONSTANTES.VERSION}} {{date|date:'yyyy'}} </p>
+			</div>
+     </div>             	
  </body>
 </html>

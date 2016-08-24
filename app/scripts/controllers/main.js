@@ -9,11 +9,12 @@
  */
 angular.module('store')
   .controller('MainCtrl', ['$rootScope','authService','$scope','$timeout', function($rootScope, authService, $scope, $timeout) {
-    $scope.alerts = [];    
+	  
+	$scope.alerts = [];    
     
     $scope.$on('event:notAllowedAccess', function(e, status) {
         var error = null;
-        $scope.alerts = [];
+       // $scope.alerts = [];
         if (status == 401) {
           //error = "L'utilisateur n est pas connecté : impossible de proceder a cette action ";
           error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
@@ -73,9 +74,9 @@ angular.module('store')
 	  };
   
 	  
-//	  $scope.$on('$routeChangeStart', function(event) {
-//		$scope.alerts = [];
-//	});
+	$scope.$on('$routeChangeStart', function(event) {
+		$scope.alerts = [];
+	});
 
 	  
   }]);

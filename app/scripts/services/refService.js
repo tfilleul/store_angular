@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('store').service('refService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
       this.getRef = function (type) {
     	  $log.debug("getRef");

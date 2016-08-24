@@ -274,15 +274,15 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
+     cssmin: {
+       dist: {
+         files: {
+           '<%= yeoman.dist %>/styles/main.css': [
+             '.tmp/styles/{,*/}*.css'
+           ]
+         }
+       }
+     },
     // uglify: {
     //   dist: {
     //     files: {
@@ -338,7 +338,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'storeAngularApp',
+          module: 'store',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -457,9 +457,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+   // clean repertoire dist                            
     'clean:dist',
+   // ajout dependance bower dans index.html
     'wiredep',
     'useminPrepare',
+    // copy image dans dist et style dans tmp
     'concurrent:dist',
     'postcss',
     'ngtemplates',
@@ -467,11 +470,11 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'copy:dist',
     'cdnify',
-  //  'cssmin',
+    'cssmin',
     'uglify',
     'filerev',
-    'usemin',
-    'htmlmin'
+    'usemin'
+  //  'htmlmin'
   ]);
 
   grunt.registerTask('default', [

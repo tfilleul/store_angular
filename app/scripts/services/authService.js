@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('store').service('authService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
       this.login = function (authentification) {
     	  $log.debug("Checking login/password : " + authentification.login + "/ <hidden pass>");
