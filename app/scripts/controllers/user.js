@@ -11,18 +11,24 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 	$scope.format = 'dd/MM/yyyy';
 	$scope.date = new Date();
 	
+   
 	$scope.getUser = function(id) {
 		
 		$q.all([refService.getRef(0),usersService.getUsers(id)])		
 		.then(function(reponse) 
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
-					$scope.user = reponse[1].data;
+					$scope.user = reponse[1].data;	
+					if ($scope.user.idpicture) {
+						$scope.imageUrl = usersService.getUrlProfilPicture($scope.user.idpicture);
+					} else {
+						$scope.imageUrl = "images/yeoman.png"
+					}
 					$scope.profilList=reponse[0].data.listProfil;
 				}			
 		,function(error) 
 				{
-				$rootScope.addAlert({ type: 'danger', msg: "Impossible d'initialiser l utilisateur "});					
+				$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser l utilisateur "});					
 				});
 	};
 	
@@ -59,9 +65,16 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 	 };
 	 
 	 /* Ajout user */
-	 $scope.addUser = function(user) {		 
+	 $scope.addUser = function(user) {	
+  	 
+	  	 var formData = new FormData();
+	     var file = $scope.picFile;
+	    // var json = $scope.myJson;
+	     formData.append("file", file);
+	     formData.append("user",JSON.stringify(user));
+	  	 	  	 
 		 var cpuser = angular.copy(user);
-		 usersService.addUser(cpuser)
+		 usersService.addUser(formData)
 			.success(
 				function(response) 
 					{
@@ -77,13 +90,18 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 					});	
 					 
 		 $scope.userForm.$setPristine();
-		 $user = {};
+		 user = {};
 		 //resetForm();
 	  };
 	  
 	  /* Mettre a jour User */
-	  $scope.putUser = function(user) {			 
-			 usersService.putUser(user)
+	  $scope.putUser = function(user) {	
+		  	 
+		  	 var formData = new FormData();
+		     var file = $scope.picFile;
+		     formData.append("file", file);
+		     formData.append("user",JSON.stringify(user));
+			 usersService.putUser(formData)
 				.success(
 					function(response) 
 						{

@@ -25,6 +25,7 @@ module.exports = function(config) {
       'bower_components/at-table/dist/angular-table.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-animate/angular-animate.js',
+      'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/angular-cookies/angular-cookies.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-route/angular-route.js',

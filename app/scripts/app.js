@@ -21,7 +21,8 @@ angular
     'ngTouch',
     'ngDropdowns',
 	'ngDialog',
-	'bgf.paginateAnything'	,
+    'ngFileUpload',
+	'bgf.paginateAnything',
 //	'angularUtils.directives.dirPagination',
 //	'digitalfondue.dftabmenu',	
     'angucomplete-alt'
@@ -69,7 +70,7 @@ angular
 	   .when('/user/put/:id', {
 	    title: "Mise a jour utilisateur",
 	    templateUrl: 'views/userForm.html',
-	    publicAccess: false	
+	    publicAccess: true	
 	  })
 	   .when('/search', {
 	    title: "Mise a jour utilisateur",
@@ -88,7 +89,7 @@ angular
 	   .when('/panel', {
 	    title: "Mise a jour utilisateur",
 	    templateUrl: 'views/panels.html',
-	    publicAccess: true
+	    publicAccess: false
 	  })
 	  .otherwise({
 	    redirectTo: '/'
@@ -104,7 +105,7 @@ angular
 	        		var method = config.method;
 	        		var url = config.url;
 	      
-	        		if (status === 401) {
+	        		if (status === 401 ) {
 	        			$location.path( "/search" );	        			
 	        			$rootScope.$broadcast('event:notAllowedAccess', status);
 	        		} else {
@@ -171,6 +172,10 @@ angular
 	$rootScope.logout = function() {
 		delete $rootScope.user;
 		delete $rootScope.authToken;
+		delete $rootScope.authentification;
+		$rootScope.loggedin = false;
+		$rootScope.loggedout = true;
+		$scope.showLoginErrorUserPass = false;
 		$location.path("/search");
 	};
 

@@ -6,8 +6,6 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
                                    function($scope,$rootScope,$http,usersService,$log,$location,$route){
 
 	$scope.list = [];
-
-//	$scope.criteria = { name:"",firstname:"",age:""};
 	
 	$scope.getListUser = function() {
 		usersService.getUsersByCritera($scope.criteria)
@@ -15,9 +13,9 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
 			function(response) 
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
-					$scope.list = response;
+					$scope.list = response;				
 					if ($scope.list.size === 0) {
-						
+						$scope.addMessage("Aucun utilisateurs trouvés")
 					}
 				})
 		.error( 
@@ -26,6 +24,16 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
 					$scope.addAlert({ type: 'danger', msg: "Impossible de proceder à la recherche "});					
 				});
 	};
+	
+	$scope.getUrlImageProfil = function (idPicture) {
+		if (idPicture) {
+			return usersService.getUrlProfilPicture(idPicture);
+		} else {
+			return 	CONSTANTES.DEFAULT_PROFIL_IMAGE;
+
+		}	
+		
+	}
 	
 	$scope.config = {
 	    itemsPerPage: 5,
@@ -36,8 +44,8 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','usersService'
 		  $location.path( hash );
 	 }; 
 	  
-	  $scope.searchUser = function() {	
-		  $scope.getListUser();		  
+	 $scope.searchUser = function() {	
+		 $scope.getListUser();		  
 	  }; 	  
 	 
 }]);

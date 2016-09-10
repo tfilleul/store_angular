@@ -15,7 +15,7 @@ angular.module('store')
     $scope.$on('event:notAllowedAccess', function(e, status) {
         var error = null;
        // $scope.alerts = [];
-        if (status == 401) {
+        if (status == 401 ) {
           //error = "L'utilisateur n est pas connecté : impossible de proceder a cette action ";
           error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
           $scope.alerts.push(error);
@@ -26,10 +26,7 @@ angular.module('store')
 	          .success(
 					function(response) 
 						{
-							delete $rootScope.authentification;
-							$rootScope.loggedin = false;
-							$rootScope.loggedout = true;
-							$scope.showLoginErrorUserPass = false;							
+							$rootScope.logout();													
 						})
 			  .error( 
 					function(response) 
