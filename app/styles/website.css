@@ -5,7 +5,7 @@
  }
  
  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
- .row.content {height: 500px}
+ .row.content {height: 550px}
  
  /* Set gray background color and 100% height */
  .sidenav {
@@ -51,3 +51,8 @@
 	height: 100px;
 	width : 100px";
 }	
+
+.store-search-list-user p {
+	text-align: left;
+	padding: 5px 5px 5px 114px;
+}

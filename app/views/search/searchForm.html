@@ -25,25 +25,7 @@
       </form>
  </div>
  
-  <div class="row" ng-repeat="user in list">
-    <div class="col-sm-5 col-md-offset-1" >
-    	<div style="background-color: white;border-color: black;border:O.5px solid black;">
-  			<p style="text-align: left;
-padding: 5px 5px 5px 114px;">Name : {{user.name}}</p>
-  			<p style="text-align: left;
-padding: 5px 5px 5px 114px;">Prenom : {{user.firstname}}</p>
-  			<p style="text-align: left;
-padding: 5px 5px 5px 114px;">Age : {{user.age}}</p>
-  		</div>
-  	</div>
-  	<div class="col-sm-4 col-md-offset-1" >
-    	<div style="background-color: white;border-color: black;border:O.5px solid black;">
-  			<img class="user-picture-profil" ng-src="{{getUrlImageProfil(user.idpicture)}}"/>
-  		</div>
-  		<div class="col-sm-1" >
-  		</div>
-  	</div>
-  </div>
+ <div ng-include="'views/searchUserList.html'"></div>
   	
   
 </div>
