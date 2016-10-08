@@ -1,0 +1,25 @@
+<div class="store-search-list-user" ng-controller="UserController">
+
+	<div class="row">
+	  	<legend style="padding-left:10px">Utilisateurs</legend>
+	  	<div class="col-md-3" >
+	    	<div style="background-color: white;border-color: black;border:O.5px solid black;">
+	  			<img class="user-view-picture-profil" ng-src="{{imageUrl}}"/>
+	  		</div>  		
+	  	</div>
+	    <div class="col-md-9" >
+	    	<div style="border:0px solid black">
+	  			<p style="color:blue;font-size:1.125em;font-style:normal">Nom : {{user.name}}</p>
+	  			<p >Prenom : {{user.firstname}}</p>
+	  			<p style="font-style:italic">Adresse Mail : {{user.mail}}</p>
+	  		</div>
+	  	</div>  	
+	 </div>
+	 <div class="pull-right">
+		<a class="btn btn-info" href="#/panel">Liste utilisateurs</a>
+	</div>	 
+</div>
+	
+
+
+

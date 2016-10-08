@@ -44,6 +44,26 @@
 	   .when('/user/put/:id', {
 	    title: "Mise a jour utilisateur",
 	    templateUrl: 'views/user/userForm.html',
+	    publicAccess: false	
+	  })
+	  .when('/user/get/:id', {
+	    title: "Affiche un utilisateur",
+	    templateUrl: 'views/user/userView.html',
+	    publicAccess: true	
+	  })
+	   .when('/product/get/:id', {
+	    title: "Affiche un utilisateur",
+	    templateUrl: 'views/product/productView.html',
+	    publicAccess: true	
+	  })
+	  .when('/productsTab', {
+	    title: "Affiche les produits",
+	    templateUrl: 'views/product/productListTab.html',
+	    publicAccess: true	
+	  })
+	  .when('/products', {
+	    title: "Affiche les produits",
+	    templateUrl: 'views/product/productList.html',
 	    publicAccess: true	
 	  })
 	   .when('/search', {

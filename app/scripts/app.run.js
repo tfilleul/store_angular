@@ -17,7 +17,7 @@
         $rootScope.$on('$routeChangeStart', function(event, nextLoc, currentLoc) {
             var closedToPublic = (-1 === routesOpenToPublic.indexOf($location.path()));
             if(closedToPublic && !$rootScope.loggedin) {
-                $location.path('/search');
+               // $location.path('/search');
             }
         });	
 

@@ -7,14 +7,14 @@
  	<li ng-class="{ active: panel.isSelected(2)}">
  		<a href ng-click="panel.selectTab(2)">Profil</a> </li>
  	<li ng-class="{ active: panel.isSelected(3)}">
- 		<a href ng-click="panel.selectTab(3)">Projets</a> </li>
+ 		<a href ng-click="panel.selectTab(3)">Produits</a> </li>
  	</ul>
  		
  	<div class="panel" ng-show="panel.isSelected(1)">	
-		<div ng-include="'views/user/usersList.html'"/>
+		<div ng-include="'views/user/usersListTab.html'"/>
 	</div> 		
 	<div class="panel" ng-show="panel.isSelected(3)">		
-		<div ng-include="'views/user/products.html'"/>
+		<div ng-include="'views/product/productListTab.html'"/>
 	</div>
 
  </product-panels>

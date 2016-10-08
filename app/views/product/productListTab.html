@@ -1,0 +1,34 @@
+<div sstyle="margin:5px">
+ <div class="pull-right">
+		<a class="btn btn-info" href="#product/add">Ajout d un produit</a>
+ </div>
+</div>
+<div ng-controller="ProductController" ng-init="getProducts()">
+<table class="table table-striped" at-table at-paginated at-list="products" at-config="config">
+  <thead>
+   <tr> 
+   		<th at-attribute="id">refProduit</th> 
+   		<th at-attribute="Label">Label</th> </tr>
+   		<th at-attribute="reference">reference</th> </tr>
+  </thead>
+  <tbody>    
+     <tr>        
+      <td class="col-md-4" at-title="Label">
+        {{item.label}}
+      </td>
+      <td class="col-md-7" at-title="Reference Produit">
+        {{item.reference}}
+      </td>
+      <td class="col-md-1" style="text-align:right">
+    	<a ng-href="#/product/get/{{item.id}}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+    	<a ng-href="#/product/put/{{item.id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+      </td>
+    </tr>    
+  </tbody>
+</table>
+
+<at-pagination at-list="products" at-config="config"></at-pagination>
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+
+			  		
+</div> 		

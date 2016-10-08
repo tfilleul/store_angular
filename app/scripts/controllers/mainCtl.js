@@ -8,7 +8,7 @@
  * Controller of the rfaApp
  */
 angular.module('store')
-  .controller('MainCtrl', ['$rootScope','authService','$scope','$timeout', function($rootScope, authService, $scope, $timeout) {
+  .controller('MainCtrl', ['$rootScope','authService','userService','$scope','$timeout', function($rootScope, authService, userService, $scope, $timeout) {
 	  
 	$scope.alerts = [];    
     
@@ -74,6 +74,6 @@ angular.module('store')
 	$scope.$on('$routeChangeStart', function(event) {
 		$scope.alerts = [];
 	});
-
-	  
+	
+		  
   }]);

@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('store').service('usersService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
+angular.module('store').service('userService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
 	$log.debug("Call service users");
 	
 	this.getUrlProfilPicture = function (idPicture) {    	 
         return CONSTANTES.APPLICATION_URL+'/store/mvc/user/picture/'+idPicture;
     };
          
-	this.getUsers = function (id) {    	 
+	this.getUser = function (id) {    	 
           return $http.get(CONSTANTES.APPLICATION_URL+'/store/mvc/user/'+id);
       };
       

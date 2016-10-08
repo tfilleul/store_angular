@@ -1,4 +1,4 @@
-{{product.name}}
+{{product.label}}
 <em class="pull-right">{{product.price | currency}}</em>
-<p> {{product.description}} </p>
+<p> Label : {{product.reference}} prix : {{product.quantity}}</p>
 <button ng-show="product.canPurchase"> Add to Cart </button>

@@ -2,7 +2,7 @@
 
 var app = angular.module('store');
 
-app.controller('UserController',['$scope','$rootScope','$http','usersService','refService','$log','$location','$q','$route', function($scope,$rootScope,$http,usersService,refService,$log,$location,$q,$route){
+app.controller('UserController',['$scope','$rootScope','$http','userService','refService','$log','$location','$q','$route', function($scope,$rootScope,$http,userService,refService,$log,$location,$q,$route){
 
 	$scope.list = [];
 		
@@ -14,13 +14,13 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
    
 	$scope.getUser = function(id) {
 		
-		$q.all([refService.getRef(0),usersService.getUsers(id)])		
+		$q.all([refService.getRef(0),userService.getUser(id)])		
 		.then(function(reponse) 
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
 					$scope.user = reponse[1].data;	
 					if ($scope.user.idpicture) {
-						$scope.imageUrl = usersService.getUrlProfilPicture($scope.user.idpicture);
+						$scope.imageUrl = userService.getUrlProfilPicture($scope.user.idpicture);
 					} else {
 						$scope.imageUrl = "images/yeoman.png"
 					}
@@ -34,7 +34,7 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 	
 	$scope.getListUser = function() {
 		
-		$q.all([refService.getRef(0),usersService.getAllUsers()])		
+		$q.all([refService.getRef(0),userService.getAllUsers()])		
 		.then(function(reponse) 
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
@@ -74,7 +74,7 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 	     formData.append("user",JSON.stringify(user));
 	  	 	  	 
 		 var cpuser = angular.copy(user);
-		 usersService.addUser(formData)
+		 userService.addUser(formData)
 			.success(
 				function(response) 
 					{
@@ -101,7 +101,7 @@ app.controller('UserController',['$scope','$rootScope','$http','usersService','r
 		     var file = $scope.picFile;
 		     formData.append("file", file);
 		     formData.append("user",JSON.stringify(user));
-			 usersService.putUser(formData)
+			 userService.putUser(formData)
 				.success(
 					function(response) 
 						{

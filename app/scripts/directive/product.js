@@ -7,7 +7,14 @@ var app = angular.module('store');
 app.directive('productTitle', function(){
 	return {
 		restrict: 'A',
-		templateUrl: './views/product-title.html'
+		templateUrl: './views/product/product-title.html'
+	};
+});
+
+app.directive('userListTitle', function(){
+	return {
+		restrict: 'A',
+		templateUrl: './views/search/searchUsersList.html'
 	};
 });
 

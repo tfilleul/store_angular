@@ -50,9 +50,14 @@
 .user-picture-profil {
 	height: 100px;
 	width : 100px";
+}
+
+.user-view-picture-profil {
+	height: 200px;
+	width : 200px";
 }	
 
-.store-search-list-user p {
+.search-list-user p {
 	text-align: left;
 	padding: 5px 5px 5px 114px;
 }

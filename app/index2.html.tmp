@@ -46,7 +46,7 @@
 		
 		
 	<script src="scripts/services/authService.js"></script>
-	<script src="scripts/services/usersService.js"></script>
+	<script src="scripts/services/userService.js"></script>
 	<script src="scripts/services/refService.js"></script>
 	
 	<!--  directive -->
