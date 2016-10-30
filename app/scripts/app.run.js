@@ -4,9 +4,24 @@
 
     angular
         .module('store')
-        .run(['$rootScope', '$location','$cookieStore','$route','$log', run]);
+        .run(['$rootScope', '$location','$cookies','$route','$log','$window', run]);
     
-    function run($rootScope, $location, $cookieStore,$route,$log) {	
+    function run($rootScope, $location, $cookies,$route,$log,$window) {	
+    	
+    	$log.debug('##### reload auth :' + $window.localStorage.getItem('auth'));
+    	//$log.debug('##### reload cookie :' + $cookies.get('auth'));
+
+    	
+    	if ($window.localStorage.getItem('auth') != null) {
+    		var authentification = JSON.parse($window.localStorage.getItem('auth'));
+    		$rootScope.user = authentification.user;
+    		$rootScope.authToken = authentification.token;
+    		$rootScope.authentification = authentification;
+    		$rootScope.loggedin = true;
+    		$rootScope.loggedout = false;
+    		//$scope.showLoginErrorUserPass = true;
+    	
+    	}
     	
     	var routesOpenToPublic = [];
         angular.forEach($route.routes, function(route, path) {
@@ -30,17 +45,7 @@
     	      //$rootScope.title = current.$$route.title;
     	  });
 
-    	$rootScope.CONSTANTES = CONSTANTES;
-
-    	$rootScope.logout = function() {
-    		delete $rootScope.user;
-    		delete $rootScope.authToken;
-    		delete $rootScope.authentification;
-    		$rootScope.loggedin = false;
-    		$rootScope.loggedout = true;
-    		$scope.showLoginErrorUserPass = false;
-    		$location.path("/search");
-    	};
+    	$rootScope.config = config;
 
     	$rootScope.initialized = true;
     } 

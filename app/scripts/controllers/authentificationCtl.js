@@ -7,8 +7,8 @@
  * # NavCtrl
  * Controller of the rfaApp
  */
-angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$location','authService', 'ngDialog', '$log',
-		 function($rootScope, $scope,$location,authService,ngDialog, $log) {
+angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$location','authService', 'ngDialog', '$log','$window','$cookies',
+		 function($rootScope, $scope,$location,authService,ngDialog, $log,$window,$cookies) {
 	
 	  $log.debug("Loading AuthCtrl");
 	   
@@ -43,10 +43,12 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 						{
 							  $log.debug("Setting root scope");
 							  // on stoke le token dans l'objet authentification
+							  $window.localStorage.setItem('auth',JSON.stringify(response));
+							  //$cookies.put('auth', JSON.stringify(response));
 							  $rootScope.authentification = response;
 							  $rootScope.loggedin = true;
 							  $rootScope.loggedout = false;
-							  $scope.credentials = {};
+							  $scope.credentials = {};							  
 							  $scope.addMessage("Vous êtes bien connecté !!");
 					          $location.path($rootScope.pathAtferLogin);
 							//  $location.path('/panel');
@@ -64,6 +66,8 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 			  .success(
 						function(response) 
 							{
+								$window.localStorage.clear();
+								//$window.localStorage.removeItem('auth');
 								delete $rootScope.authentification;
 								$rootScope.loggedin = false;
 								$rootScope.loggedout = true;

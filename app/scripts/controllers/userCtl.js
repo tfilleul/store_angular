@@ -73,7 +73,7 @@ app.controller('UserController',['$scope','$rootScope','$http','userService','re
 	     formData.append("file", file);
 	     formData.append("user",JSON.stringify(user));
 	  	 	  	 
-		 var cpuser = angular.copy(user);
+//		 var cpuser = angular.copy(user);
 		 userService.addUser(formData)
 			.success(
 				function(response) 

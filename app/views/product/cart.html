@@ -1,6 +1,6 @@
-<div  ng-controller="ProductController" ng-init="getProducts()">
+<div  ng-controller="ProductController" ng-init="getCart()">
 
-  <div class="row" ng-repeat="product in products">
+  <div class="row" ng-repeat="product in cart">
 		<legend style="padding-left:10px">Produits</legend>
 	  	<div class="col-md-1 col-md-offset-1" >
 	    	<div style="background-color: white;border-color: black;border:O.5px solid black;">
@@ -16,7 +16,7 @@
 	  		</div>
 	  	</div> 
 	  	 <div class="col-md-2">
-	  	 	<button class="btn btn-info" ng-click="addCart(product)">Ajout au panier <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+	  	 	<button class="btn btn-info" ng-click="delCart(product)">Supprimer du panier <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
 	  	</div> 	
 	  </div>
 </div> 		

@@ -5,23 +5,20 @@
   </div> -->
 
 <div class="row" style="padding:25px">
-		<form name="search" class="form-inline">  		
-	      	<div class="form-group col-sm-3">      	
-	        	<label for="name" class="control-label">Nom</label>        
-	        	<input type="text" ng-model="criteria.name" class="form-control" id="inputName" placeholder="Nom" >
+		<form name="search" class="form-inline text-center">			  		
+	      	<div class="form-group">	      		    	
+	        	<label for="name" style="padding:5px" class="control-label">Nom</label>
+	        	<input type="text" ng-model="criteria.name" class="form-control" id="inputName" placeholder="Nom" >	        	
 	       	</div>
-	
-	      	<div class="form-group col-sm-3" >        
-	       		<label for="name" class="control-label">Prenom</label>         
+	       	<div class="form-group" >        
+	       		<label for="name" style="padding:5px" class="control-label">Prenom</label>         
 	       		<input type="text" ng-model="criteria.firstName" class="form-control" id="inputName" placeholder="prenom" >
 	       	</div>
-	      	<div class="form-group col-sm-3" >         
-	       		<label for="name" class="control-label">Age</label>        
+	       	<div class="form-group" >         
+	       		<label for="name" style="padding:5px" class="control-label">Age</label>        
 	       		<input type="text" ng-model="criteria.age" class="form-control" id="inputName" placeholder="age" >
 	       	</div>
-	       	<div class="col-sm-3" style="text-align: center">
-	     	<button type="submit" class="btn btn-default" ng-click="searchUser()">Recherche</button>
-	     	</div>
+	       	<button type="submit" class="btn btn-default" ng-click="searchUser()">Recherche</button>	     	
       </form>
  </div>
  

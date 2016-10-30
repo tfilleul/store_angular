@@ -9,8 +9,9 @@
     function config($routeProvider, $locationProvider,$logProvider,$provide, $httpProvider, $compileProvider) {
 
 
-      $logProvider.debugEnabled(CONSTANTES.ENABLE_DEBUG);
-
+      $logProvider.debugEnabled(config.ENABLE_DEBUG);      
+      $httpProvider.defaults.withCredentials = true;
+   
       $provide.decorator('$log', ['$delegate', function ($delegate) {
         // Keep track of the original debug method, we'll need it later.
         var origDebug = $delegate.debug;
@@ -54,6 +55,11 @@
 	   .when('/product/get/:id', {
 	    title: "Affiche un utilisateur",
 	    templateUrl: 'views/product/productView.html',
+	    publicAccess: true	
+	  })
+	  .when('/cart', {
+	    title: "Affiche le panier",
+	    templateUrl: 'views/product/cart.html',
 	    publicAccess: true	
 	  })
 	  .when('/productsTab', {
@@ -113,9 +119,9 @@
 	    
 	    /* Registers auth token interceptor, auth token is passed by header
 	     * as soon as there is an authenticated user */
-	    $httpProvider.interceptors.push(function ($q, $rootScope, $location) {
+	    $httpProvider.interceptors.push(function ($q, $rootScope, $location, $cookies,$window) {
 	        return {
-	        	'request': function($config) {
+	        	'request': function($config) {	        		
 	        		var isRestCall = $config.url.indexOf('rest') >= 0;
 	        		var isImportCall = $config.url.indexOf('mvc') >= 0;
 	         		if (isRestCall && angular.isDefined($rootScope.authentification)) {
@@ -124,6 +130,7 @@
 	        			}
 	        		}
 	        		
+	         		// check token only if authentified
 	        		if (isImportCall && angular.isDefined($rootScope.authentification)) {
 	        			if (angular.isDefined($rootScope.authentification.token)){
 	        				$config.headers['X-Auth-Token'] = $rootScope.authentification.token;

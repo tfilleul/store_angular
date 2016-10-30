@@ -45,7 +45,7 @@ app.controller('SearchControlleur',['$scope','$rootScope','$http','userService',
 			if (idPicture) {
 				return userService.getUrlProfilPicture(idPicture);
 			} else {
-				return 	CONSTANTES.DEFAULT_PROFIL_IMAGE;
+				return 	$rootScope.config.DEFAULT_PROFIL_IMAGE;
 
 			}	
 	  }

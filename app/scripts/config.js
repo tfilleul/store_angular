@@ -1,7 +1,7 @@
 'use strict';
 
 
-var CONSTANTES = {
+var config = {
 	'VERSION' : '1.0.0',
 	'AUTOCOMPLETE_SIZE' : 50,
 	'TREE_TABLE_SIZE' : 20,

@@ -2,7 +2,7 @@
 
 var app = angular.module('store');
 
-app.controller('ProductController',['$scope','$rootScope','$http','storeService','refService','$log','$location','$q','$route', function($scope,$rootScope,$http,storeService,refService,$log,$location,$q,$route){
+app.controller('ProductController',['$scope','$rootScope','$http','productService','storeService','$log','$location','$q','$route', function($scope,$rootScope,$http,productService,storeService,$log,$location,$q,$route){
 
 	var ressource = 'product';  
 	$scope.products = [];
@@ -16,16 +16,77 @@ app.controller('ProductController',['$scope','$rootScope','$http','storeService'
 		  $location.path( hash );
 	};
 	
+	$scope.addCart = function ( product ) {
+		
+		productService.addCart(product)
+		.success(
+			function(response) 
+				{
+					$log.debug('Retour succes de l ajout du produit dans le panier');
+					$scope.addMessage("Le produit a été ajouté dans le panier");
+				//	$scope.go("/panel");
+				})
+		.error( 
+			function(response) 
+				{
+					$scope.addAlert({ type: 'danger', msg: response.message});
+					$scope.message = {text: response};
+
+			});	
+		
+	};
+	
+	$scope.delCart = function ( product ) {
+			
+			productService.delCart(product)
+			.success(
+				function(response) 
+					{
+						$log.debug('Retour succes de suppression du produit dans le panier');
+						$scope.addMessage("Suppression d'un produit");
+						$scope.cart.splice($scope.products.indexOf(product),1);
+						//$scope.go("/cart");
+					})
+			.error( 
+				function(response) 
+					{
+						$scope.addAlert({ type: 'danger', msg: response.message});
+						$scope.message = {text: response};
+	
+				});	
+			
+		};
+
+	
+	$scope.getCart = function () {
+		
+		productService.getCart()
+		.success(
+			function(response) 
+				{
+					$log.debug('Affiche panier');
+					$scope.cart = response;						
+	
+				})
+		.error( 
+			function(response) 
+				{
+					$scope.addAlert({ type: 'danger', msg: response.message});
+					$scope.message = {text: response};
+		});	
+		
+	};
+	
 	$scope.getProduct = function(id) {
 		
-		$q.all([refService.getRef(0),storeService.getObject(id,ressource)])		
+		$q.all([storeService.getObject(id,ressource)])		
 		.then(function(reponse) 
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
-					$scope.product = reponse[1].data;						
+					$scope.product = reponse[0].data;						
 					//$scope.profilList=reponse[0].data.listProfil;
 				}			
-		,function(error) 
+		,function(error)
 				{
 					$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser le produit "});					
 				});
@@ -35,11 +96,11 @@ app.controller('ProductController',['$scope','$rootScope','$http','storeService'
 		
 		var ressource = 'product';  
 		
-		$q.all([refService.getRef(0),storeService.getAllObject(ressource)])		
+		$q.all([storeService.getAllObject(ressource)])		
 		.then(function(reponse) 
 				{
 					$log.debug('Retour succes de searchFirstThesaurus');					
-					$scope.products = reponse[1].data;
+					$scope.products = reponse[0].data;
 				//	$scope.profilList=reponse[0].data.listProfil;
 				}			
 		,function(error) 
