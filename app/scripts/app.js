@@ -13,7 +13,9 @@
  */
 angular
   .module('store', [
-    'ui.bootstrap',                
+    'ui.bootstrap', 
+    'ui.select', 
+    'ngSanitize',
     'ngAnimate',
     'ngCookies',
     'ngResource',

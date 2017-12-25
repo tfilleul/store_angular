@@ -2,50 +2,15 @@
 
 var app = angular.module('store');
 
-app.controller('UserController',['$scope','$rootScope','$http','userService','refService','$log','$location','$q','$route', function($scope,$rootScope,$http,userService,refService,$log,$location,$q,$route){
+app.controller('UserController',['$scope','$rootScope','$http','storeService','userService','refService','$log','$location','$q','$route', function($scope,$rootScope,$http,storeService,userService,refService,$log,$location,$q,$route){
 
 	$scope.list = [];
 		
 	var id = $route.current.params.id;
+	var ressource = 'user'
 	
 	$scope.format = 'dd/MM/yyyy';
 	$scope.date = new Date();
-	
-   
-	$scope.getUser = function(id) {
-		
-		$q.all([refService.getRef(0),userService.getUser(id)])		
-		.then(function(reponse) 
-				{
-					$log.debug('Retour succes de searchFirstThesaurus');					
-					$scope.user = reponse[1].data;	
-					if ($scope.user.idpicture) {
-						$scope.imageUrl = userService.getUrlProfilPicture($scope.user.idpicture);
-					} else {
-						$scope.imageUrl = "images/yeoman.png"
-					}
-					$scope.profilList=reponse[0].data.listProfil;
-				}			
-		,function(error) 
-				{
-				$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser l utilisateur "});					
-				});
-	};
-	
-	$scope.getListUser = function() {
-		
-		$q.all([refService.getRef(0),userService.getAllUsers()])		
-		.then(function(reponse) 
-				{
-					$log.debug('Retour succes de searchFirstThesaurus');					
-					$scope.list = reponse[1].data;
-					$scope.profilList=reponse[0].data.listProfil;
-				}			
-		,function(error) 
-				{
-					$scope.addAlert({ type: 'danger', msg: "Impossible d'initialiser les users "});				
-				});
-	};
 	
 	$scope.isMajUser = function() {
 		var id = $route.current.params.id;
@@ -59,14 +24,37 @@ app.controller('UserController',['$scope','$rootScope','$http','userService','re
 	    itemsPerPage: 5,
 	    fillLastPage: true
 	};
-	 
-	 $scope.go = function ( hash ) {
-		  $location.path( hash );
-	 };
-	 
+	
+	$scope.getUser = function(id) {
+		$q.all([refService.getRef(0),storeService.getObject(id,ressource)])		
+		.then(function(reponse) 
+				{
+					$log.debug('Retour succes de searchFirstThesaurus');					
+					$scope.user = reponse[1].data;	
+					if ($scope.user.idpicture) {
+						$scope.imageUrl = userService.getUrlProfilPicture($scope.user.idpicture);						
+					} else {
+						$scope.imageUrl = "images/yeoman.png"							
+					}
+					$scope.profilList=reponse[0].data.listProfil;
+				}	
+		);
+	};
+	
+	$scope.getListUser = function() {		
+		$q.all([refService.getRef(0),storeService.getAllObject(ressource)])		
+		.then(function(reponse) 
+				{
+					$log.debug('Retour succes de searchFirstThesaurus');					
+					$scope.list = reponse[1].data;
+					$scope.profilList=reponse[0].data.listProfil;
+				}			
+		);
+	};
+	
+		 
 	 /* Ajout user */
-	 $scope.addUser = function(user) {	
-  	 
+	 $scope.addUser = function(user) {	  	 
 	  	 var formData = new FormData();
 	     var file = $scope.picFile;
 	    // var json = $scope.myJson;
@@ -83,10 +71,9 @@ app.controller('UserController',['$scope','$rootScope','$http','userService','re
 						$scope.go("/panel");
 					})
 			.error( 
-				function(response) 
+				function(response,status) 
 					{
-						$scope.addAlert({ type: 'danger', msg: response.message});
-						$scope.message = {text: response};
+						$scope.addAlert({ type: 'danger', msg: response.message},status);
 					});	
 					 
 		 $scope.userForm.$setPristine();
@@ -99,8 +86,14 @@ app.controller('UserController',['$scope','$rootScope','$http','userService','re
 		  	 
 		  	 var formData = new FormData();
 		     var file = $scope.picFile;
-		     formData.append("file", file);
-		     formData.append("user",JSON.stringify(user));
+		     // l utilisateur a charge une image
+		     if (file) {
+		    	 formData.append("file", file);
+		    	 formData.append("user",JSON.stringify(user));
+		     } else {
+		    	 formData.append("file", null);
+		    	 formData.append("user",JSON.stringify(user));
+		     }
 			 userService.putUser(formData)
 				.success(
 					function(response) 
@@ -113,7 +106,6 @@ app.controller('UserController',['$scope','$rootScope','$http','userService','re
 					function(response,status) 
 						{
 							$scope.addAlert({ type: 'danger', msg: "Impossible d'ajouter l utilisateur "},status);							
-							$scope.message = {text: "Impossible de mettre a jour l utilisateur "};
 						});
 	  };
 	  

@@ -7,18 +7,13 @@
  * # NavCtrl
  * Controller of the rfaApp
  */
-angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$location','authService', 'ngDialog', '$log','$window','$cookies',
-		 function($rootScope, $scope,$location,authService,ngDialog, $log,$window,$cookies) {
+angular.module('store').controller('AuthCtrl', ['keycloak','$rootScope', '$scope', '$location','authService', 'ngDialog', '$log','$window','$cookies',
+		 function(keycloak,$rootScope, $scope,$location,authService,ngDialog, $log,$window,$cookies) {
 	
-	  $log.debug("Loading AuthCtrl");
-	   
-	  $scope.showLoginErrorUserPass = false;
-	  
-	  $scope.openModal = function() {
-		  $rootScope.pathAtferLogin = $location.$$url;
-          $('#loginModal').modal('show');
-	  };
-	 
+	 $log.debug("Loading AuthCtrl");	  
+ 
+	 $scope.showLoginErrorUserPass = false;
+		 
 	  if ($rootScope.authentification === undefined) {
 		  $rootScope.loggedin = false;
 		  $rootScope.loggedout = true;
@@ -34,52 +29,20 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 			    controller: 'AuthCtrl'
 			});};
 		  
-	  $scope.login = function () {
+	  $scope.login = function () {		  
 		  $log.debug("Appel de login");
-		  $scope.showLoginErrorUserPass = false;
-		  authService.login($scope.credentials)
-	      	.success(
-					function(response) 
-						{
-							  $log.debug("Setting root scope");
-							  // on stoke le token dans l'objet authentification
-							  $window.localStorage.setItem('auth',JSON.stringify(response));
-							  //$cookies.put('auth', JSON.stringify(response));
-							  $rootScope.authentification = response;
-							  $rootScope.loggedin = true;
-							  $rootScope.loggedout = false;
-							  $scope.credentials = {};							  
-							  $scope.addMessage("Vous êtes bien connecté !!");
-					          $location.path($rootScope.pathAtferLogin);
-							//  $location.path('/panel');
-					          $('#loginModal').modal('hide');
-						})
-			.error( 
-					function(response) 
-						{
-							 $scope.showLoginErrorUserPass = true;
-						});
-	  };
+		  $scope.showLoginErrorUserPass = false;		  
+		  keycloak.login();		  		  	  
+     };
 	  
-	  $scope.logout = function () {
-		  authService.logout()
-			  .success(
-						function(response) 
-							{
-								$window.localStorage.clear();
-								//$window.localStorage.removeItem('auth');
-								delete $rootScope.authentification;
-								$rootScope.loggedin = false;
-								$rootScope.loggedout = true;
-								$scope.showLoginErrorUserPass = false;
-								$location.path('/search');
-							})
-				.error( 
-						function(response) 
-							{
-								$scope.message = {text: $scope.date + " : Echec de la déconnexion"};
-							});
-	      
+	  $scope.logout = function () {		
+		keycloak.logout();
+		$window.localStorage.clear();
+		delete $rootScope.authentification;
+		$rootScope.loggedin = false;
+		$rootScope.loggedout = true;
+		$scope.showLoginErrorUserPass = false;
+		$location.path('/search');	      
 	  };
 	  
 	$scope.goTo = function(hash) {
@@ -90,6 +53,7 @@ angular.module('store').controller('AuthCtrl', ['$rootScope', '$scope', '$locati
 		$('#loginModal').modal('hide');
 		$scope.showLoginErrorUserPass = false;
 	};
+	
 }]);
 
 

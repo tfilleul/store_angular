@@ -82,8 +82,8 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
+                '/app/bower_components',
+                connect.static('./app/bower_components')
               ),
               connect().use(
                 '/app/styles',
@@ -102,8 +102,8 @@ module.exports = function (grunt) {
               connect.static('.tmp'),
               connect.static('test'),
               connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
+                '/app/bower_components',
+                connect.static('./app/bower_components')
               ),
               connect.static(appConfig.app)
             ];
@@ -202,24 +202,16 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
-      },
-      test: {
-        devDependencies: true,
-        src: '<%= karma.unit.configFile %>',
         ignorePath:  /\.\.\//,
-        fileTypes:{
-          js: {
-            block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
+        fileTypes: {
+      	  html: {            
               replace: {
-                js: '\'{{filePath}}\','
+                js: '<script src="/app/{{filePath}}\"></script>',
+                css: '<link rel="stylesheet" href="/app/{{filePath}}\"></link>'
               }
             }
-          }
-      }
+          }        
+      },
     }, 
 
     // Renames files for browser caching purposes
@@ -239,7 +231,7 @@ module.exports = function (grunt) {
     // additional tasks can operate on them
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
-      options: {
+      options: {    	
         dest: '<%= yeoman.dist %>',
         flow: {
           html: {
@@ -292,7 +284,18 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // concat: {
+     
+//    concat:
+//     { generated:
+//      { files:
+//         [ { dest: '.tmp/concat/scripts/vendor.js',
+//             src:
+//              [ 'app/bower_components/*/*.js',
+//                ] },
+//           { dest: '.tmp/concat/scripts/scripts.js',
+//             src:
+//              [ '{.tmp,app}/scripts/*/*.jskeycloak.min.js' ] } ] } },
+//    // concat: {
     //   dist: {}
     // },
 
@@ -347,6 +350,24 @@ module.exports = function (grunt) {
         dest: '.tmp/templateCache.js'
       }
     },
+    
+    war: {
+        target: {
+          options: {
+            war_dist_folder: '<%= yeoman.dist %>',    /* Folder where to generate the WAR. */
+            war_name: 'webstore',                    /* The name fo the WAR file (.war will be the extension) */
+            war_verbose : 'true'
+          },
+          files: [
+            {
+              expand: true,
+              cwd: '<%= yeoman.dist %>',
+              src: ['**'],
+              dest: ''
+            }
+          ]
+        }
+    },
 
     // ng-annotate tries to make the code safe for minification automatically
     // by using the Angular long form for dependency injection.
@@ -389,7 +410,7 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/bootstrap/dist',
+          cwd: 'app/bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
         }]
@@ -469,11 +490,12 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
+  //  'cdnify',
     'cssmin',
     'uglify',
     'filerev',
-    'usemin'
+    'usemin',
+    'war'
   //  'htmlmin'
   ]);
 

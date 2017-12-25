@@ -1,0 +1,49 @@
+<div ng-controller="SearchControlleur">
+
+ <!--  <div id="titre" style="margin-left: 15px;margin-bottom: 15px;;font-size: 20px;color: #0099FF;">	
+  	<span >Ecran de Recherche</span>
+  </div> -->
+
+<div class="row" style="padding:25px">
+		<form name="search" class="form-horizontal" role="form">
+		<div class="row">
+     	 <div class="col-sm-6 col-md-3">			  		
+	      	<div class="form-group">	      		    	
+	        	<label for="name" class="control-label col-md-3">Nom</label>
+	        	<div class="col-md-9">	        	
+	        	<ui-select ng-model="criteriaObject.selected" theme="bootstrap" reset-search-input="false">
+		            <ui-select-match placeholder="Saisir un nom d'utilisateur...">{{$select.selected.name}}</ui-select-match>
+		            <ui-select-choices repeat="item in listUserSelect track by $index" refresh="refreshUser($select.search)" refresh-delay="0">
+		              <div ng-bind-html="item.name | highlight: $select.search"></div>
+		            </ui-select-choices>
+          		</ui-select>
+          		</div>	        	
+	       	</div>
+	       	</div>
+	       	<div class="col-sm-6 col-md-3">
+	       	<div class="form-group" >        
+	       		<label for="name" class="control-label col-md-3">Prenom</label>  
+	       		<div class="col-md-9">	       		       
+	       		<input type="text" ng-model="criteria.firstName" class="form-control" id="inputName" placeholder="prenom" >
+	       		</div>
+	       	</div>
+	       	</div>
+	        <div class="col-sm-6 col-md-3">	       	
+	       	<div class="form-group" >         
+	       		<label for="name"  class="control-label col-md-3">Age</label> 
+	       		<div class="col-md-9">	       		       
+	       		<input type="text" ng-model="criteria.age" class="form-control" id="inputName" placeholder="age" >
+	       		</div>
+	       	</div>
+	       	</div>
+	       	<div class="col-sm-6 col-md-3">	
+	       		<button type="submit" class="btn btn-default pull-right" ng-click="searchUser()">Recherche</button>
+	       	</div>
+	     </div>  	
+      </form>
+ </div>
+ 
+<div ng-include="'views/search/searchUsersList.html'"></div>  
+  
+</div>
+

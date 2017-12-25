@@ -62,6 +62,10 @@
 	    templateUrl: 'views/product/cart.html',
 	    publicAccess: true	
 	  })
+	  .when('/authentified', {	    
+	    templateUrl: 'views/user/authentified.html',
+	    publicAccess: true	
+	  })
 	  .when('/productsTab', {
 	    title: "Affiche les produits",
 	    templateUrl: 'views/product/productListTab.html',
@@ -74,7 +78,7 @@
 	  })
 	   .when('/search', {
 	    title: "Mise a jour utilisateur",
-	    templateUrl: 'views/search/searchForm.html',
+	    templateUrl: 'views/search/searchFormSelect2.html',
 	    publicAccess: true
 	  })
 	   .when('/loginModal', {
@@ -83,7 +87,7 @@
 	    publicAccess: true
 	  })
 	   .when('/logout', { 
-    	templateUrl: 'views/search/searchForm.html', 
+    	templateUrl: 'views/search/searchFormSelect2.html', 
     	controller: 'AuthCtrl' 
       })
 	   .when('/panel', {
@@ -97,51 +101,9 @@
 	  
 	  /* Register error provider that shows message on failed requests or redirects to login page on
 		 * unauthenticated requests */
-	    $httpProvider.interceptors.push(function ($q, $rootScope, $location) {
-		        return {
-		        	'responseError': function($rejection) {
-		        		var status = $rejection.status;
-		        		var config = $rejection.config;
-		        		var method = config.method;
-		        		var url = config.url;
-		      
-		        		if (status === 401 ) {
-		        			$location.path( "/search" );	        			
-		        			$rootScope.$broadcast('event:notAllowedAccess', status);
-		        		} else {
-		        			$rootScope.error = method + " on " + url + " failed with status " + status;
-		        		}
-		        		return $q.reject($rejection);
-		        	}
-		        };
-		    }
-	    );
+	  $httpProvider.interceptors.push('httpInterceptor');
 	    
-	    /* Registers auth token interceptor, auth token is passed by header
-	     * as soon as there is an authenticated user */
-	    $httpProvider.interceptors.push(function ($q, $rootScope, $location, $cookies,$window) {
-	        return {
-	        	'request': function($config) {	        		
-	        		var isRestCall = $config.url.indexOf('rest') >= 0;
-	        		var isImportCall = $config.url.indexOf('mvc') >= 0;
-	         		if (isRestCall && angular.isDefined($rootScope.authentification)) {
-	        			if (angular.isDefined($rootScope.authentification.token)){
-	        				$config.headers['X-Auth-Token'] = $rootScope.authentification.token;
-	        			}
-	        		}
-	        		
-	         		// check token only if authentified
-	        		if (isImportCall && angular.isDefined($rootScope.authentification)) {
-	        			if (angular.isDefined($rootScope.authentification.token)){
-	        				$config.headers['X-Auth-Token'] = $rootScope.authentification.token;
-	        			}
-	        		}
-	        		
-	        		return $config;
-	        		}
-	        	};
-	    }
-	   ); 
+	    
     }
 })();
 

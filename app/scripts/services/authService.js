@@ -1,14 +1,18 @@
 'use strict';
 
 angular.module('store').service('authService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
-      this.login = function (authentification) {
-    	  $log.debug("Checking login/password : " + authentification.login + "/ <hidden pass>");
-          return $http.put($rootScope.config.APPLICATION_URL + '/store/mvc/logon', authentification);
+      this.login = function (criteria) {
+    	  $log.debug("Checking login/password : " + criteria + "/ <hidden pass>");
+          return $http.post('http://mywildfly:8080' + '/store/mvc/logon',criteria)
+          .then(function(response) {
+              return response;
+          }, function(error) {
+              return error;
+          });
       };
       
       this.logout = function () {
     	  $log.debug("Logout ");
-    	  var config = {withCredentials: true};
           return $http.get($rootScope.config.APPLICATION_URL + '/store/mvc/logoff');
       };
 }]);

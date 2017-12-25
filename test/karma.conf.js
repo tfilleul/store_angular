@@ -20,23 +20,24 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/angular/angular.js',
-      'bower_components/at-table/dist/angular-table.js',
-      'bower_components/bootstrap/dist/js/bootstrap.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/ng-file-upload/ng-file-upload.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-touch/angular-touch.js',
-      'bower_components/ngDialog/js/ngDialog.js',
-      'bower_components/angular-paginate-anything/src/paginate-anything.js',
-      'bower_components/angular-dropdowns/dist/angular-dropdowns.min.js',
-      'bower_components/angucomplete-alt/angucomplete-alt.js',
-      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'bower_components/angular-mocks/angular-mocks.js',
+      <script src='/app/app/bower_components/jquery/dist/jquery.js'</script>
+      <script src='/app/app/bower_components/angular/angular.js'</script>
+      <script src='/app/app/bower_components/at-table/dist/angular-table.js'</script>
+      <script src='/app/app/bower_components/bootstrap/dist/js/bootstrap.js'</script>
+      <script src='/app/app/bower_components/angular-animate/angular-animate.js'</script>
+      <script src='/app/app/bower_components/ng-file-upload/ng-file-upload.js'</script>
+      <script src='/app/app/bower_components/angular-cookies/angular-cookies.js'</script>
+      <script src='/app/app/bower_components/angular-resource/angular-resource.js'</script>
+      <script src='/app/app/bower_components/angular-route/angular-route.js'</script>
+      <script src='/app/app/bower_components/angular-sanitize/angular-sanitize.js'</script>
+      <script src='/app/app/bower_components/angular-touch/angular-touch.js'</script>
+      <script src='/app/app/bower_components/ngDialog/js/ngDialog.js'</script>
+      <script src='/app/app/bower_components/angular-paginate-anything/src/paginate-anything.js'</script>
+      <script src='/app/app/bower_components/angular-dropdowns/dist/angular-dropdowns.min.js'</script>
+      <script src='/app/app/bower_components/angucomplete-alt/angucomplete-alt.js'</script>
+      <script src='/app/app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js'</script>
+      <script src='/app/app/bower_components/angular-ui-select/dist/select.js'</script>
+      <script src='/app/app/bower_components/angular-mocks/angular-mocks.js'</script>
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',

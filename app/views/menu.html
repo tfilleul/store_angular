@@ -18,10 +18,11 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-show="loggedout"><a data-toggle="modal" href ng-click="openModal()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li ng-show="loggedout"><a data-toggle="modal" href ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li ng-show="loggedin" class="dropdown">
-			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.login}}<span class="caret"></span></a>
+			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.user.name}}<span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
+              	<li>{{authentification.user.name}}</li>
                 <li><a ng-href="#/logout" ng-click="logout()">Déconnexion</a></li>
               </ul>
 		</li>

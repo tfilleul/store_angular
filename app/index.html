@@ -5,12 +5,13 @@
 
 	<!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
-    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
-    <link rel="stylesheet" href="bower_components/angular-dropdowns/dist/angular-dropdowns.min.css" />
-    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/app/bower_components/bootstrap/dist/css/bootstrap.css"></link>
+    <link rel="stylesheet" href="/app/bower_components/ngDialog/css/ngDialog.css"></link>
+    <link rel="stylesheet" href="/app/bower_components/ngDialog/css/ngDialog-theme-default.css"></link>
+    <link rel="stylesheet" href="/app/bower_components/angular-dropdowns/dist/angular-dropdowns.min.css"></link>
+    <link rel="stylesheet" href="/app/bower_components/angucomplete-alt/angucomplete-alt.css"></link>
+    <link rel="stylesheet" href="/app/bower_components/components-font-awesome/css/font-awesome.css"></link>
+    <link rel="stylesheet" href="/app/bower_components/angular-ui-select/dist/select.css"></link>
     <!-- endbower -->
     <!-- endbuild -->
   
@@ -19,39 +20,46 @@
     <!-- endbuild -->
     </head>
     
- <body ng-app="store">
+ <body>
  	<!--  
  	<script type="text/javascript" src="./scripts/lib/angular.min.js"></script>
  	-->
 	
 	 <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/at-table/dist/angular-table.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/ngDialog/js/ngDialog.js"></script>
-    <script src="bower_components/angular-paginate-anything/src/paginate-anything.js"></script>
-    <script src="bower_components/angular-dropdowns/dist/angular-dropdowns.min.js"></script>
-    <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <!-- endbower -->
+   <!-- bower:js -->
+   <script src="/app/bower_components/jquery/dist/jquery.js"></script>
+   <script src="/app/bower_components/angular/angular.js"></script>
+   <script src="/app/bower_components/at-table/dist/angular-table.js"></script>
+   <script src="/app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+   <script src="/app/bower_components/angular-animate/angular-animate.js"></script>
+   <script src="/app/bower_components/ng-file-upload/ng-file-upload.js"></script>
+   <script src="/app/bower_components/angular-cookies/angular-cookies.js"></script>
+   <script src="/app/bower_components/angular-resource/angular-resource.js"></script>
+   <script src="/app/bower_components/angular-route/angular-route.js"></script>
+   <script src="/app/bower_components/angular-sanitize/angular-sanitize.js"></script>
+   <script src="/app/bower_components/angular-touch/angular-touch.js"></script>
+   <script src="/app/bower_components/ngDialog/js/ngDialog.js"></script>
+   <script src="/app/bower_components/angular-paginate-anything/src/paginate-anything.js"></script>
+   <script src="/app/bower_components/angular-dropdowns/dist/angular-dropdowns.min.js"></script>
+   <script src="/app/bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+   <script src="/app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+   <script src="/app/bower_components/angular-ui-select/dist/select.js"></script>
+   <!-- endbower -->
     <!-- endbuild -->
-    
+            
      <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/keycloak.min.js"></script> 
+    <script src="scripts/keycloak-authz.min.js"></script> 
+    
     <script src="scripts/config.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>	
     <script type="text/javascript" src="scripts/app.config.js"></script>  
     <script type="text/javascript" src="scripts/app.run.js"></script>    
       
 	<!-- controllers  -->
+	<!-- <script type="text/javascript" src="scripts/factory/keycloakFact.js"></script> -->
+	
+	
 	<script type="text/javascript" src="scripts/controllers/panelCtl.js"></script>
 	<script type="text/javascript" src="scripts/controllers/productCtl.js"></script>	
 	<script type="text/javascript" src="scripts/controllers/storeCtl.js"></script>
@@ -62,12 +70,18 @@
 	<script type="text/javascript" src="scripts/controllers/navigationCtl.js"></script>
 	<script type="text/javascript" src="scripts/controllers/authentificationCtl.js"></script>
 	<script type="text/javascript" src="scripts/controllers/datePickerCtl.js"></script>
+	
+	<!-- filter -->
+	<script type="text/javascript" src="scripts/filters/filterSelect2.js"></script>
+	
 			
 	<script src="scripts/services/authService.js"></script>
 	<script src="scripts/services/storeService.js"></script>
 	<script src="scripts/services/productService.js"></script>		
 	<script src="scripts/services/userService.js"></script>
 	<script src="scripts/services/refService.js"></script>
+	<script src="scripts/services/http-interceptor.service.js"></script>
+	
 	
 	<!--  directive -->
 	<script type="text/javascript" src="scripts/directive/product.js"></script>	
@@ -87,7 +101,7 @@
     <div class="col-sm-2 sidenav">    
     </div>
     <div class="col-sm-8">
-    	<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+    	<div uib-alert ng-repeat="alert in alerts" dismiss-on-timeout="5000" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
         <div ng-view=""></div>
     </div>
     <div class="col-sm-2 sidenav">      

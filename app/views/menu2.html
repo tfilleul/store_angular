@@ -20,7 +20,8 @@
 			<li ng-show="loggedin" class="dropdown">
 			<a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle">{{authentification.login}}<span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a ng-href="#/logout" ng-click="logout()">Déconnexion</a></li>
+              	 <li>{{user.name}}</li>              	
+                 <li><a ng-href="#/logout" ng-click="logout()">Déconnexion</a></li>
               </ul>
 			</li>
 			

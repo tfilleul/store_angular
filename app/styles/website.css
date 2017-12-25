@@ -61,3 +61,14 @@
 	text-align: left;
 	padding: 5px 5px 5px 114px;
 }
+
+/* .form-inline .ui-select-container .ui-select-toggle,
+.fomr-inline .ui-select-container .ui-select-search {
+	width : 100%;
+}
+
+.fomr-inline .ui-select-container {
+	display:inline-block;
+	vertical-align:middle;
+	width: auto;
+} */

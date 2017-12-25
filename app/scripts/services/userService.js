@@ -6,18 +6,14 @@ angular.module('store').service('userService', ['$rootScope', '$http', '$log', f
 	this.getUrlProfilPicture = function (idPicture) {    	 
         return $rootScope.config.APPLICATION_URL+'/store/mvc/user/picture/'+idPicture;
     };
-         
-	this.getUser = function (id) {    	 
-          return $http.get($rootScope.config.APPLICATION_URL+'/store/mvc/user/'+id);
-      };
-      
-     this.getAllUsers = function (id) {    	 
-          return $http.get($rootScope.config.APPLICATION_URL+'/store/mvc/users');
-      };  
       
     this.getUsersByCritera = function (critere) {    	 
           return $http.post($rootScope.config.APPLICATION_URL + '/store/mvc/user/search',critere);
-    };  
+    }; 
+    
+    this.getUsersNameByCritera = function (critere) {    	 
+        return $http.post($rootScope.config.APPLICATION_URL + '/store/mvc/user/search/name',critere);
+    };
       
     this.addUser = function (formData) {    	  
           return $http.post($rootScope.config.APPLICATION_URL + '/store/mvc/user/add',formData,

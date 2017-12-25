@@ -18,13 +18,6 @@ app.directive('userListTitle', function(){
 	};
 });
 
-//app.directive('productPanels', function(){
-//	return {
-//	restrict: 'E',
-//	templateUrl: './views/product-panels.html'	
-//	};
-//});
-
 app.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',

@@ -40,7 +40,7 @@
 	    <label for="inputImage" class="col-sm-4 control-label">Photo de profil</label>
 	    <div class="col-sm-4">
 <!-- 			<input type="file" class="file" ngf-select="" name="file" ngf-accept="'image/*'" required="required"> -->
-                <input type="file" file-model="picFile" required="required"/>		
+                <input type="file" id="userPicFile" file-model="picFile" ng-required="!user.idpicture"/>		
 	    </div>
 	    <div class="col-sm-4">
 	    	<div style="text-align:left">

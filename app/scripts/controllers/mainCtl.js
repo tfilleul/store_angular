@@ -8,34 +8,56 @@
  * Controller of the rfaApp
  */
 angular.module('store')
-  .controller('MainCtrl', ['$rootScope','authService','userService','$scope','$timeout', function($rootScope, authService, userService, $scope, $timeout) {
+  .controller('MainCtrl', ['keycloak','$rootScope','authService','userService','$scope','$timeout','$location', function(keycloak,$rootScope, authService, userService, $scope, $timeout,$location) {
 	  
 	$scope.alerts = [];    
     
-    $scope.$on('event:notAllowedAccess', function(e, status) {
+    $scope.$on('event:notAllowedAccess', function(e, response) {
         var error = null;
+        var status = response.status;
        // $scope.alerts = [];
-        if (status == 401 ) {
-          //error = "L'utilisateur n est pas connecté : impossible de proceder a cette action ";
-          error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
-          $scope.alerts.push(error);
-          
-          // time out
-          if ($rootScope.authentification != null) {
-	          authService.logout()
-	          .success(
-					function(response) 
-						{
-							$rootScope.logout();													
-						})
-			  .error( 
-					function(response) 
-						{
-							$scope.message = {text: $scope.date + " : Echec de la déconnexion"};
-						});
-	          }
+        switch (status) {
+        case 400:
+            break;
+        case 401:
+        	$location.path( "/search" );	        			
+  	      //error = "L'utilisateur n est pas connecté : impossible de proceder a cette action ";
+            error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
+            $scope.alerts.push(error);
+            
+            // time out
+            if ($rootScope.authentification != null) {
+            	Keycloak.logout();
+            	$rootScope.logout();
+  	        }
+            break;
+        case 403:
+        	error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
+            $scope.alerts.push(error);
+            if ($rootScope.authentification != null) {
+            	keycloak.logout();
+            	$rootScope.logout();
+            }	
+            break;
+        case 404:
+        	error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
+            $scope.alerts.push(error);            
+            break;
+        case 409:
+        	error = { type: 'danger', msg: "L'utilisateur n est pas connecté : impossible de proceder a cette action ou perte de session"};
+            $scope.alerts.push(error);            
+            break;
+        default:
+			$scope.addAlert({ type: 'danger', msg: response.message},status);
+            break;
         }
+        
     });
+    
+    $scope.go = function ( hash ) {
+		  $location.path( hash );
+	 };
+
     
 	$scope.date = new Date();
 	
@@ -70,10 +92,13 @@ angular.module('store')
 		$scope.alerts.splice(index, 1);
 	  };
   
+	$scope.$on('keypress', function() {
+  		delete $scope.alerts;
+  	});  
 	  
-	$scope.$on('$routeChangeStart', function(event) {
-		$scope.alerts = [];
-	});
+//	$scope.$on('$routeChangeStart', function(event) {
+//		$scope.alerts = [];
+//	});
 	
 		  
   }]);
